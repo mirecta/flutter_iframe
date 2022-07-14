@@ -1,0 +1,55 @@
+<html>
+
+<head>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	
+</head>
+
+<body>
+	<script>
+		function init(){
+		//receive messages from iframe
+		window.addEventListener('message', function (e) {
+			parts = e.data.split('|')
+			if(parts.length == 2){
+				switch (parts[0]) {
+  					case 'counter':
+						document.getElementById("counter").innerText = parts[1]
+    					//console.log(parseInt(parts[1],10));
+    				break;
+				}
+			}
+			//console.log(e);
+		});
+	}
+	//load flutter after page ready
+	window.onload = function(){
+		
+		let val = Math.floor(Math.random() * 10000);
+		document.getElementById("flutter").src = "index2.html?id=" + val.toString();
+		document.getElementById("flutter").href = "index2.html?id=" + val.toString();
+	};
+
+	function setValue(){
+		var val = document.getElementById("value").value;
+		document.getElementById("flutter").contentWindow.postMessage("set|" + val,'*');
+	}
+
+
+	</script>
+	<h1>
+		Test</h1>
+	<p>
+	<div id="counter">0</div>
+	</p>
+	<p><input id="value" type="text"> <button onclick="setValue()">Set</button></p>
+	<!-- iframe with flutter app -->
+	<iframe id="flutter" onload="init()" style=" border: 0;width:300px;height:600px;" ></iframe>
+	
+
+
+</body>
+
+</html>
