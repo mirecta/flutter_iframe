@@ -1,16 +1,26 @@
 # test
 
-A new Flutter project.
-
+Show how to flutter app can work in iframe and how can rest of webpage comunicate with it
+ - Flutter parse url parameters from iframe uri
+ - Flutter can send messages to parent window
+ - Parent window send messages to flutter app 
+ 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Build by 
+```
+flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL="canvaskit/"
+```
 
-A few resources to get you started if this is your first Flutter project:
+then copy files to document root
+```
+mkdir document_root
+cp -r build/web/assets document_root/
+cp -r build/web/canvaskit document_root/
+cp -r build/web/icons document_root/
+cp build/web/favicon.png  build/web/flutter.js  build/web/flutter_service_worker.js build/web/main.dart.js  build/web/manifest.json document_root/
+cp build/web/index.html document_root/index2.html
+cp html/index.html document_root/
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Done
